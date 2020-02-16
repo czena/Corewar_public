@@ -34,7 +34,6 @@ static void		print_op(t_dlist **lex, const int fd, const t_op *op)
 void			print_commands_byte(t_dlist *lex, const int fd)
 {
 	int				cur_byte;
-	int				i;
 	const t_op		*op;
 
 	cur_byte = 0;
@@ -46,7 +45,6 @@ void			print_commands_byte(t_dlist *lex, const int fd)
 			op = get_info(((t_token *)lex->content)->name);
 			if (op->type_byte)
 				print_char(((t_token *)lex->content)->types_op, fd, &cur_byte);
-			i = 0;
 			print_op(&lex, fd, op);
 		}
 		else

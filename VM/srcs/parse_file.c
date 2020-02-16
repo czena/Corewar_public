@@ -5,7 +5,7 @@
 static int	check_comment(int fd, t_player *plr, char *str)
 {
 	char	*comment;
-	char	buffer[4];
+	char	*buffer = (char*)malloc(4);
 
 	if (!(comment = ft_strnew(COMMENT_LENGTH)))
 		return (print_errors(12, "check_comment", NULL));
@@ -14,8 +14,9 @@ static int	check_comment(int fd, t_player *plr, char *str)
 	comment[COMMENT_LENGTH] = '\0';
 	plr->comment = comment;
 	read(fd, &buffer, 4);
-	if (check_null(&buffer))
+	if (check_null(buffer))
 		return (-1);
+	free(buffer);
 	return (1);
 }
 
@@ -44,7 +45,7 @@ static int	check_champ_size(int fd, t_player *plr, char *str)
 static int	check_name(int fd, t_player *plr, char *str)
 {
 	char	*name;
-	char	buffer[4];
+	char	*buffer = (char*)malloc(4);
 
 	if (!(name = ft_strnew(PROG_NAME_LENGTH)))
 		return (print_errors(12, "check_name", NULL));
@@ -53,8 +54,9 @@ static int	check_name(int fd, t_player *plr, char *str)
 	name[PROG_NAME_LENGTH] = '\0';
 	plr->name = name;
 	read(fd, &buffer, 4);
-	if (check_null(&buffer))
+	if (check_null(buffer))
 		return (-1);
+	free(buffer);
 	return (1);
 }
 

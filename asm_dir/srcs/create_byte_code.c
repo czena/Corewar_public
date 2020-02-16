@@ -61,10 +61,8 @@ int		write_bytes(t_dlist *lex, const char *filename, int size)
 
 int		create_byte_code(t_dlist *lex, const char *filename)
 {
-	t_dlist		*byte_code;
 	int			size;
 
-	byte_code = NULL;
 	size = init_labels(lex);
 	init_lab_op(lex);
 	if (write_bytes(lex, filename, size) == -1)

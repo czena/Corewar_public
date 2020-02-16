@@ -29,4 +29,5 @@ int		check_null(char *buffer)
 			return (print_errors(18, NULL, NULL));
 		i++;
 	}
+	return (1);
 }
