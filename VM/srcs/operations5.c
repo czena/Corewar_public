@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   operations5.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: czena <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/11 15:32:58 by czena             #+#    #+#             */
-/*   Updated: 2019/11/19 13:39:35 by czena            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "op.h"
 #include "corewar.h"
@@ -50,4 +39,31 @@ void	operation_aff(t_cursor *cursor, char **arena, t_param *param)
 		cursor->byte_to_next += 1;
 	}
 	cursor->position = (cursor->position + cursor->byte_to_next) % MEM_SIZE;
+}
+
+void	operation_fork(t_cursor *cursor, char **arena)
+{
+	int			res;
+	t_cursor	*temp;
+	int			i;
+
+	i = 0;
+	temp = cursor;
+	cursor->byte_to_next = 1;
+	res = dir_read(cursor, arena, 2);
+	cursor_create_empty(&cursor);
+	cursor_to_bgn(&cursor);
+	cursor->carry = temp->carry;
+	while (i < REG_NUMBER)
+	{
+		cursor->reg[i] = temp->reg[i];
+		i++;
+	}
+	cursor->last_live = temp->last_live;
+	if ((res % IDX_MOD + temp->position) % MEM_SIZE < 0)
+		res = MEM_SIZE + (res % IDX_MOD + temp->position) % MEM_SIZE;
+	cursor->position = (res % IDX_MOD + temp->position) % MEM_SIZE;
+	cursor->remained_op = 0;
+	cursor->creator = temp->creator;
+	temp->position = (temp->position + temp->byte_to_next) % MEM_SIZE;
 }

@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/04 13:17:27 by nharra            #+#    #+#             */
-/*   Updated: 2019/11/14 12:50:14 by nharra           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -181,17 +170,16 @@ void				ft_queque_del_link(t_queue **queue);
 void				*ft_queue_pop(t_queue *queue);
 t_queue				*ft_queue_new(void);
 
-
 /*
 **						VECTOR_INT
 */
 
-typedef struct	v_int
+typedef struct		s_v_int
 {
-	int			*beg;
-	int			*after_end;
-	size_t		max_size;
-}				t_v_int;
+	int				*beg;
+	int				*after_end;
+	size_t			max_size;
+}					t_v_int;
 
 int					ft_v_int_realloc(t_v_int *v, size_t size);
 t_v_int				*ft_v_int_new(size_t size);

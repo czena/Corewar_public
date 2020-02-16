@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   operations2.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: czena <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/11 15:32:58 by czena             #+#    #+#             */
-/*   Updated: 2019/11/20 08:08:20 by czena            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "op.h"
 #include "corewar.h"
@@ -24,6 +13,7 @@ void	operation_live(t_cursor *cursor, t_param *param, char **arena)
 	{
 		param->last = i * -1;
 		param->plr[(i * -1) - 1].last_live = param->n_cycle + 1;
+		param->plr[(i * -1) - 1].cur_live += 1;
 		arena[3][cursor->position] = 50;
 	}
 	cursor->position = (cursor->position + 4 + 1) % MEM_SIZE;

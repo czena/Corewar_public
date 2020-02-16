@@ -1,21 +1,13 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   corewar.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: czena <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/10 13:42:06 by czena             #+#    #+#             */
-/*   Updated: 2019/11/19 13:57:30 by czena            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "corewar.h"
 #include "op.h"
 
 static void		print_usage(void)
 {
-	ft_putendl("Usage: ");
+	ft_printf("./corewar [-a] [-dump <num>] [-v] [-n <num>] <champion.cor>  ");
+	ft_printf("<...>\n-a          : Print output from");
+	ft_printf("\"aff\" (Default is off)\n-v          : Run visualizer\n");
+	ft_printf("-n    <num> : Set <num> of the next player\n");
 }
 
 int				main(int argc, char **argv)
@@ -39,5 +31,5 @@ int				main(int argc, char **argv)
 		print_winners(plr, &param);
 		players_delete(plr);
 	}
-	return (1);
+	exit(1);
 }

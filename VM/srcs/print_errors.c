@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   print_errors.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: czena <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/10 14:03:20 by czena             #+#    #+#             */
-/*   Updated: 2019/11/19 14:01:44 by czena            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "corewar.h"
 
@@ -54,6 +43,8 @@ int			print_errors(int n, char *str, char *str2)
 		ft_printf("ID %s is used\n", str);
 	else if (n == 8)
 		ft_printf("ID %s more than players\n", str);
+	else if (n == 18)
+		ft_printf("Bad binary\n");
 	else
 		print_errors2(n, str);
 	return (-1);

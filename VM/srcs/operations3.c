@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   operations3.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: czena <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/11 15:32:58 by czena             #+#    #+#             */
-/*   Updated: 2019/11/19 19:10:45 by czena            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "op.h"
 #include "corewar.h"
@@ -138,7 +127,7 @@ void	operation_ldi(t_cursor *cursor, char **arena)
 	else if (get_bin_num(type, 2) == 2)
 		res += dir_read(cursor, arena, 2);
 	if (cursor->position + (res % IDX_MOD) < 0)
-		address = (cursor->position + (res % IDX_MOD) + MEM_SIZE) % MEM_SIZE;
+		address = (cursor->position + (res % IDX_MOD)) % MEM_SIZE + MEM_SIZE;
 	else
 		address = (cursor->position + (res % IDX_MOD)) % MEM_SIZE;
 	cursor->reg[get_t_reg(arena, (cursor->position + cursor->byte_to_next) %

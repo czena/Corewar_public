@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_v_int_realloc.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nharra <nharra@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/26 02:16:06 by nharra            #+#    #+#             */
-/*   Updated: 2019/11/10 15:27:14 by nharra           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -28,5 +17,5 @@ int		ft_v_int_realloc(t_v_int *v, size_t size)
 	v->after_end = new + (offset < size ? offset : size);
 	free(v->beg);
 	v->beg = new;
-	return(1);
+	return (1);
 }

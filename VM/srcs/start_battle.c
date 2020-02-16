@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   start_battle.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: czena <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/11 14:17:54 by czena             #+#    #+#             */
-/*   Updated: 2019/11/19 20:15:44 by czena            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "corewar.h"
 #include "op.h"
@@ -44,6 +33,10 @@ static void		check_live_cursors(t_param *param, t_cursor **cursor)
 
 static void		check_live(t_param *param, t_cursor **cursor)
 {
+	int		i;
+
+	if (param->visual_flag == 1)
+		save_cur_live(param->plr);
 	param->n_cycles_to_die = 0;
 	check_live_cursors(param, cursor);
 	param->n_check++;
@@ -53,6 +46,12 @@ static void		check_live(t_param *param, t_cursor **cursor)
 		param->n_check = 0;
 	}
 	param->n_live = 0;
+	i = 0;
+	while (i < param->n_players)
+	{
+		param->plr[i].cur_live = 0;
+		++i;
+	}
 }
 
 static void		battle(t_cursor **cursor, char **arena, t_param *param,
@@ -65,10 +64,7 @@ static void		battle(t_cursor **cursor, char **arena, t_param *param,
 	while (*cursor)
 	{
 		if (param->dump_flag == param->n_cycle && param->visual_flag == 0)
-		{
-			print_dump(arena);
-			return ;
-		}
+			return (print_dump(arena));
 		if (param->visual_flag == 1)
 			print_arena(arena, *cursor, param, &vis);
 		cursor_to_bgn(cursor);

@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: czena <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: nharra <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/17 15:24:18 by czena             #+#    #+#              #
-#    Updated: 2019/11/19 14:48:45 by czena            ###   ########.fr        #
+#    Updated: 2019/11/22 15:35:32 by nharra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -Wall -Werror -Wextra -g
+FLAGS = -Wall -Werror -Wextra
 
 SRCS = corewar.c \
 		parse_input.c \
@@ -43,6 +43,9 @@ SRCS = corewar.c \
 		print_status.c \
 		print_getch.c \
 		print_players.c \
+		create_colors.c \
+		print_cur_period.c \
+		print_last_period.c \
 
 SOURCES_DIR = srcs
 
@@ -59,7 +62,9 @@ INCLUDE_DIR = ../includes
 INCLUDES = corewar.h\
 			op.h \
 
-NAME = corewar
+INC = $(addprefix $(INCLUDE_DIR)/, $(INCLUDES))
+
+NAME = ../corewar
 
 LIBFT = $(addprefix $(LIBFT_DIR)/, libft.a)
 
@@ -69,7 +74,7 @@ LIBFT_INCLUDE_DIR = ../libft/includes
 
 all: lib $(NAME)
 
-$(NAME): $(LIBFT_DIR)/libft.a $(OBJECTS_DIR) $(OBJECTS)
+$(NAME): $(LIBFT_DIR)/libft.a $(OBJECTS_DIR) $(OBJECTS) $(INC)
 	gcc -o $(NAME) $(OBJECTS)  -I $(LIBFT_INCLUDE_DIR) -I $(INCLUDE_DIR) -L ../libft/ -lft -lncurses $(FLAGS)
 
 $(OBJECTS): | $(OBJECTS_DIR)
@@ -77,7 +82,7 @@ $(OBJECTS): | $(OBJECTS_DIR)
 $(OBJECTS_DIR):
 	mkdir $(OBJECTS_DIR)
 
-$(OBJECTS_DIR)/%.o: $(SOURCES_DIR)/%.c
+$(OBJECTS_DIR)/%.o: $(SOURCES_DIR)/%.c $(INC)
 	gcc  -I$(INCLUDE_DIR) -I$(LIBFT_INCLUDE_DIR) -c $< -o $@ $(FLAGS)
 
 lib:

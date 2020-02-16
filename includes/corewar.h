@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: czena <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/10 13:41:05 by czena             #+#    #+#             */
-/*   Updated: 2019/11/19 18:21:53 by czena            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef COREWAR_H
 # define COREWAR_H
@@ -34,6 +23,8 @@ typedef struct		s_player
 	int		champ_size;
 	int		start_pos;
 	int		last_live;
+	int		cur_live;
+	int		prev_live;
 }					t_player;
 
 typedef struct		s_param
@@ -91,6 +82,7 @@ int					arena_init(t_player *plr, t_param *param);
 void				print_arena(char **arena, t_cursor *cursor,
 								t_param *param, t_vis *vis);
 void				printf_cursors(t_cursor *cursor);
+int					check_null(char *buffer);
 
 void				new_param(t_param *param);
 void				init_param(t_param *param, t_player *plr, t_player *first);
@@ -168,5 +160,8 @@ void				print_players(t_player *plr, t_param *param);
 void				create_colors(void);
 void				print_winner(t_player *plr, t_param *param);
 void				print_speed(t_vis *vis);
+void				print_cur_period(t_param *param);
+void				print_last_period(t_param *param);
+void				save_cur_live(t_player *plr);
 
 #endif

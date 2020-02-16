@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_file.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: czena <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/10 13:45:12 by czena             #+#    #+#             */
-/*   Updated: 2019/11/19 13:42:51 by czena            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "corewar.h"
 #include "op.h"
@@ -25,6 +14,8 @@ static int	check_comment(int fd, t_player *plr, char *str)
 	comment[COMMENT_LENGTH] = '\0';
 	plr->comment = comment;
 	read(fd, &buffer, 4);
+	if (check_null(&buffer))
+		return (-1);
 	return (1);
 }
 
@@ -44,7 +35,7 @@ static int	check_champ_size(int fd, t_player *plr, char *str)
 		i--;
 	}
 	ft_memcpy(&size, &number, sizeof(CHAMP_MAX_SIZE));
-	if (size > CHAMP_MAX_SIZE)
+	if (size > CHAMP_MAX_SIZE || size < 0)
 		return (print_errors(13, str, NULL));
 	plr->champ_size = size;
 	return (1);
@@ -62,6 +53,8 @@ static int	check_name(int fd, t_player *plr, char *str)
 	name[PROG_NAME_LENGTH] = '\0';
 	plr->name = name;
 	read(fd, &buffer, 4);
+	if (check_null(&buffer))
+		return (-1);
 	return (1);
 }
 
