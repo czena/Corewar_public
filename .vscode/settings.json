@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"sstream": "c",
+		"typeinfo": "c",
+		"corewar.h": "c"
+	}
+}
